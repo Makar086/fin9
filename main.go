@@ -53,18 +53,18 @@ func maxChunks(data []int) int {
 	if len(data) == 0 {
 		return 0
 	}
-//len1:=len(data)
+
 len:=SIZE/CHUNKS
 el:=SIZE-(len*CHUNKS)
 	max1:=make([]int, CHUNKS)
 
 
 
+
+	for i:=0; i<CHUNKS; i++{
 wg.Add(1)
 go func() {
-defer wg.Done()
-	for i:=0; i<CHUNKS; i++{
-	
+defer wg.Done()	
 
 	max1[i] = data[(0+i)]
 
@@ -78,6 +78,7 @@ defer wg.Done()
 //	}
 y:=len+(len*i)
 i1:=len*i
+
 for num :=i1; num<y; num++ {
 
 		if max1[i] < data[num] {
@@ -89,12 +90,13 @@ for num :=i1; num<y; num++ {
 
 
 
-}}()
+}()}
 wg.Wait()
+if el!=0{
 for num :=(SIZE-el); num<SIZE; num++ {
 		
 max1 = append(max1, data[(num)])
-	}
+	}}
 
 	max2 := data[0]
 
